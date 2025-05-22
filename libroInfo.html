@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ficha de libro | Tesoros Del Tiempo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#f8f4e3] text-[#333] font-sans">
+
+  <div id="header"></div>
+
+  <!-- Banner Principal -->
+  <section class="bg-[#f3f0e0] py-12 text-center">
+    <h2 class="text-3xl font-bold mb-2">Libros antiguos, raros, y curiosos</h2>
+    <p class="text-lg">Adéntrate en nuestra tienda para descubrir piezas únicas y de colección.</p>
+  </section>
+
+  <!-- Ficha del Libro -->
+  <main class="px-6 py-12">
+    <section class="max-w-5xl mx-auto bg-white shadow-md rounded-lg p-6 flex flex-col md:flex-row gap-8">
+      <img src="../img/books/bookGrande.png" alt="Orgullo y prejuicio" class="w-full md:w-1/3 rounded object-cover">
+      <div class="md:w-2/3 space-y-4">
+        <h1 class="text-2xl font-bold">Orgullo y prejuicio</h1>
+        <p><span class="font-semibold">Autor:</span> Jane Austen</p>
+        <p><span class="font-semibold">Editorial:</span> Norma</p>
+        <p><span class="font-semibold">Año de edición:</span> 2024</p>
+        <p><span class="font-semibold">Materia:</span> Historia</p>
+        <p><span class="font-semibold">ISBN:</span> 111-22-333-4444-1</p>
+        <p><span class="font-semibold">Páginas:</span> 400</p>
+        <p><span class="font-semibold">Encuadernación:</span> Pasta dura</p>
+        <p class="text-2xl font-bold text-green-700">52,30€</p>
+        <button class="bg-green-700 text-white px-6 py-2 rounded hover:bg-green-800 transition">Añadir a mi cesta</button>
+        <div>
+          <h3 class="text-lg font-semibold mt-6 mb-2">Sinopsis</h3>
+          <p class="text-sm text-gray-700">101 reflexiones que cambiarán tu forma de pensar...</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer"></div>
+  <script src="/js/include-components.js"></script>
+  <script src="/js/libros.js"></script>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const id = parseInt(params.get('id'));
+
+  const libro = libros.find(l => l.id === id);
+
+  if (!libro) {
+    document.querySelector("main").innerHTML = "<p class='text-center text-red-600'>Libro no encontrado.</p>";
+  } else {
+    document.querySelector("main").innerHTML = `
+      <section class="max-w-5xl mx-auto bg-white shadow-md rounded-lg p-6 flex flex-col md:flex-row gap-8">
+        <img src="${libro.imagen}" alt="${libro.titulo}" class="w-full md:w-1/3 rounded object-cover">
+        <div class="md:w-2/3 space-y-4">
+          <h1 class="text-2xl font-bold">${libro.titulo}</h1>
+          <p><span class="font-semibold">Autor:</span> ${libro.autor}</p>
+          <p><span class="font-semibold">Editorial:</span> ${libro.editorial}</p>
+          <p><span class="font-semibold">Año de edición:</span> ${libro.año}</p>
+          <p><span class="font-semibold">Materia:</span> ${libro.materia}</p>
+          <p><span class="font-semibold">ISBN:</span> ${libro.isbn}</p>
+          <p><span class="font-semibold">Páginas:</span> ${libro.paginas}</p>
+          <p><span class="font-semibold">Encuadernación:</span> ${libro.encuadernacion}</p>
+          <p class="text-2xl font-bold text-green-700">${libro.precio.toFixed(2)}€</p>
+          <button class="bg-green-700 text-white px-6 py-2 rounded hover:bg-green-800 transition">Añadir a mi cesta</button>
+          <div>
+            <h3 class="text-lg font-semibold mt-6 mb-2">Sinopsis</h3>
+            <p class="text-sm text-gray-700">${libro.sinopsis}</p>
+          </div>
+        </div>
+      </section>
+    `;
+  }
+</script>
+</body>
+</html>

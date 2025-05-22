@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Carrito</title>
+</head>
+<body>
+  <h1>Tu carrito</h1>
+  <div id="cart-container"></div>
+
+  <script>
+    // Obtener carrito del localStorage
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    const container = document.getElementById('cart-container');
+
+    if (cart.length === 0) {
+      container.innerHTML = '<p>Tu carrito está vacío.</p>';
+    } else {
+      // Crear tabla para mostrar productos
+      const table = document.createElement('table');
+      table.border = '1';
+      const header = table.insertRow();
+      header.insertCell().textContent = 'Título';
+      header.insertCell().textContent = 'Precio';
+      header.insertCell().textContent = 'Cantidad';
+      header.insertCell().textContent = 'Subtotal';
+
+      let total = 0;
+
+      cart.forEach(item => {
+        const row = table.insertRow();
+        row.insertCell().textContent = item.title;
+        row.insertCell().textContent = `€${item.price.toFixed(2)}`;
+        row.insertCell().textContent = item.quantity;
+        const subtotal = item.price * item.quantity;
+        row.insertCell().textContent = `€${subtotal.toFixed(2)}`;
+        total += subtotal;
+      });
+
+      // Fila total
+      const totalRow = table.insertRow();
+      totalRow.insertCell().textContent = 'Total';
+      totalRow.cells[0].colSpan = 3;
+      totalRow.insertCell().textContent = `€${total.toFixed(2)}`;
+
+      container.appendChild(table);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resultados de búsqueda | Tesoros Del Tiempo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#f8f4e3] text-[#333] font-sans">
+
+  <div id="header"></div>
+
+  <!-- Banner Principal -->
+  <section class="bg-[#f3f0e0] py-12 text-center">
+    <h2 class="text-3xl font-bold mb-2">Libros antiguos, raros, y curiosos</h2>
+    <p class="text-lg">Adéntrate en nuestra tienda para descubrir piezas únicas y de colección.</p>
+  </section>
+
+  <!-- Contenido principal -->
+  <main class="flex flex-col md:flex-row px-6 py-10 gap-6">
+
+    <!-- Sidebar -->
+    <aside class="md:w-1/4 w-full space-y-6">
+      <div>
+        <h3 class="font-semibold mb-2">Filtrado por:</h3>
+        <div class="flex flex-wrap gap-2">
+          <button class="bg-green-600 text-white px-3 py-1 rounded text-sm">Historia</button>
+          <button class="bg-green-600 text-white px-3 py-1 rounded text-sm">Inglés</button>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="font-semibold mb-2">Géneros:</h4>
+        <ul class="space-y-1 text-sm">
+          <li>Historia</li>
+          <li>Romance</li>
+          <li>Poesía</li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-semibold mb-2">Idiomas:</h4>
+        <ul class="space-y-1 text-sm">
+          <li>Español</li>
+          <li>Inglés</li>
+          <li>Francés</li>
+          <li>Alemán</li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Resultados de búsqueda -->
+    <section class="md:w-3/4 w-full">
+      <input type="text" class="w-full border px-4 py-2 mb-6 rounded shadow-sm" placeholder="Historia" />
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-white p-4 rounded shadow flex items-center gap-4">
+          <img src="../img/books/book1.jpg" alt="Libro 1" class="w-20 h-28 object-cover rounded">
+          <div>
+            <h3 class="font-semibold">Don Quijote de la Mancha</h3>
+            <p class="text-sm text-gray-600">Miguel de Cervantes</p>
+          </div>
+        </div>
+
+        <div class="bg-white p-4 rounded shadow flex items-center gap-4">
+          <img src="../img/books/book2.jpg" alt="Libro 2" class="w-20 h-28 object-cover rounded">
+          <div>
+            <h3 class="font-semibold">Castilla y León, según la visión de los viajeros extranjeros</h3>
+            <p class="text-sm text-gray-600">Agustín García Simón</p>
+          </div>
+        </div>
+
+        <div class="bg-white p-4 rounded shadow flex items-center gap-4">
+          <img src="../img/books/book3.jpg" alt="Libro 3" class="w-20 h-28 object-cover rounded">
+          <div>
+            <h3 class="font-semibold">Moby Dick</h3>
+            <p class="text-sm text-gray-600">Hermann Melville</p>
+          </div>
+        </div>
+
+        <div class="bg-white p-4 rounded shadow flex items-center gap-4">
+          <img src="../img/books/book4.jpg" alt="Libro 4" class="w-20 h-28 object-cover rounded">
+          <div>
+            <h3 class="font-semibold">Drácula</h3>
+            <p class="text-sm text-gray-600">Bram Stoker</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer"></div>
+  <script src="/js/include-components.js"></script>
+
+  <script>
+    const libros = [
+      {
+        titulo: "Don Quijote de la Mancha",
+        autor: "Miguel de Cervantes",
+        genero: "Historia",
+        idioma: "Español",
+        imagen: "../img/books/book1.jpg"
+      },
+      {
+        titulo: "Castilla y León, según la visión de los viajeros extranjeros",
+        autor: "Agustín García Simón",
+        genero: "Historia",
+        idioma: "Español",
+        imagen: "../img/books/book2.jpg"
+      },
+      {
+        titulo: "Moby Dick",
+        autor: "Hermann Melville",
+        genero: "Aventura",
+        idioma: "Inglés",
+        imagen: "../img/books/book3.jpg"
+      },
+      {
+        titulo: "Drácula",
+        autor: "Bram Stoker",
+        genero: "Terror",
+        idioma: "Inglés",
+        imagen: "../img/books/book4.jpg"
+      }
+    ];
+  
+    const contenedorResultados = document.querySelector(".grid");
+  
+    function renderLibros(lista) {
+      contenedorResultados.innerHTML = "";
+      lista.forEach(libro => {
+        const card = `
+          <div class="bg-white p-4 rounded shadow flex items-center gap-4">
+            <img src="${libro.imagen}" alt="${libro.titulo}" class="w-20 h-28 object-cover rounded">
+            <div>
+              <h3 class="font-semibold">${libro.titulo}</h3>
+              <p class="text-sm text-gray-600">${libro.autor}</p>
+            </div>
+          </div>`;
+        contenedorResultados.innerHTML += card;
+      });
+    }
+  
+    renderLibros(libros); // Mostrar todos por defecto
+  
+    // Filtro por input
+    const inputBusqueda = document.querySelector("input[type='text']");
+    inputBusqueda.addEventListener("input", () => {
+      const texto = inputBusqueda.value.toLowerCase();
+      const filtrados = libros.filter(libro =>
+        libro.titulo.toLowerCase().includes(texto) ||
+        libro.autor.toLowerCase().includes(texto)
+      );
+      renderLibros(filtrados);
+    });
+  
+    // Filtro por botones (género o idioma)
+    const botonesFiltro = document.querySelectorAll("aside button");
+    botonesFiltro.forEach(boton => {
+      boton.addEventListener("click", () => {
+        const texto = boton.textContent.trim().toLowerCase();
+        const filtrados = libros.filter(libro =>
+          libro.genero.toLowerCase() === texto ||
+          libro.idioma.toLowerCase() === texto
+        );
+        renderLibros(filtrados);
+      });
+    });
+  </script>
+  
+</body>
+</html>
