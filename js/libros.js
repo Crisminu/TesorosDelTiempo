@@ -11,7 +11,7 @@ const libros = [
       encuadernacion: "Tapa dura",
       precio: 250.00,
       sinopsis: "Una sátira brillante sobre la caballería que narra las aventuras del ingenioso hidalgo Don Quijote y su fiel escudero Sancho Panza.",
-      imagen: "../img/books/book1.jpg"
+      imagen: "./img/books/book1.jpg"
     },
     {
       id: 2,
@@ -25,7 +25,7 @@ const libros = [
       encuadernacion: "Rústica",
       precio: 180.00,
       sinopsis: "Una recopilación de testimonios y relatos de viajeros europeos que recorrieron Castilla y León entre los siglos XVIII y XIX.",
-      imagen: "../img/books/book2.jpg"
+      imagen: "./img/books/book2.jpg"
     },
     {
       id: 3,
@@ -39,7 +39,7 @@ const libros = [
       encuadernacion: "Tapa dura",
       precio: 250.00,
       sinopsis: "La clásica historia del capitán Ahab y su obsesiva caza de la gran ballena blanca, Moby Dick.",
-      imagen: "../img/books/book3.jpg"
+      imagen: "./img/books/book3.jpg"
     },
     {
       id: 4,
@@ -53,7 +53,7 @@ const libros = [
       encuadernacion: "Tapa dura",
       precio: 280.00,
       sinopsis: "La novela fundacional del mito moderno del vampiro. Drácula viaja desde Transilvania a Londres, propagando el terror.",
-      imagen: "../img/books/book4.jpg"
+      imagen: "./img/books/book4.jpg"
     },
     {
       id: 5,
@@ -67,7 +67,7 @@ const libros = [
       encuadernacion: "Pasta dura",
       precio: 80.00,
       sinopsis: "La historia de las hermanas Bennet y su lucha por encontrar el amor y la estabilidad en una sociedad marcada por las apariencias.",
-      imagen: "../img/books/book5.jpg"
+      imagen: "./img/books/book5.jpg"
     }
   ];
   
