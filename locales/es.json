@@ -1,0 +1,102 @@
+{
+  "header": {
+    "inicio": "Inicio",
+    "libros": "Libros",
+    "contacto": "Contacto",
+    "buscar_placeholder": "Buscar..",
+    "idioma": {
+      "es": "ES",
+      "en": "EN"
+    },
+    "carrito": "Carrito",
+    "modo_oscuro": "Modo oscuro"
+  },
+  "hero": {
+    "titulo": "Descubre libros únicos y con historia",
+    "descripcion": "Explora nuestra colección de joyas literarias, piezas de colección y ejemplares antiguos con valor incalculable.",
+    "ver_destacados": "Ver destacados"
+  },
+  "banner": {
+    "titulo": "Libros antiguos, raros, y curiosos",
+    "descripcion": "Adéntrate en nuestra tienda para descubrir piezas únicas y de colección."
+  },
+  "genero": "Géneros",
+  "generos": {
+    "historia": "Historia",
+    "romance": "Romance",
+    "poesia": "Poesía",
+    "aventura": "Aventura",
+    "terror": "Terror"
+  },
+  "filtros": {
+    "filtrado_por": "Filtrado por:",
+    "generos": "Géneros:",
+    "idiomas": "Idiomas:"
+  },
+  "idiomas": "Languages",
+  "idiomas_lista": {
+    "espanol": "Español",
+    "ingles": "Inglés",
+    "frances": "Francés",
+    "aleman": "Alemán"
+  },
+  "busqueda": {
+    "placeholder": "Historia"
+  },
+  "info_1": "🌟 Conoce a nuestro autor del mes: Antonio de Nebrija, pionero de la gramática española.",
+  "libros_destacados": "Libros destacados",
+  "anadir": "Añadir",
+  "info_2": "📚 ¡Nuevo ebook disponible! Los manuscritos perdidos del siglo XV — Descárgalo gratis durante esta semana.",
+  "autores_recomendados": "Autores Recomendados",
+  "autores": {
+    "cervantes": {
+      "descripcion": "Autor de Don Quijote. Figura clave de la literatura universal."
+    },
+    "becquer": {
+      "descripcion": "Poeta sevillano del romanticismo. Conocido por sus Rimas y Leyendas."
+    },
+    "anamaria": {
+      "descripcion": "Una de las voces más importantes de la posguerra española."
+    }
+  },
+  "acordeon": {
+    "titulo_1": "¿Cuál es la historia de nuestra librería?",
+    "contenido_1": "Nuestra librería nació en 1998 con la misión de rescatar y preservar libros antiguos y raros.",
+    "titulo_2": "¿Cómo seleccionar los libros destacados?",
+    "contenido_2": "Seleccionamos libros basados en su relevancia histórica, rareza y estado de conservación.",
+    "titulo_3": "¿Ofrecen envíos internacionales?",
+    "contenido_3": "Sí, enviamos a la mayoría de los países con opciones de seguimiento y seguro."
+  },
+  "pestanas": {
+    "descripcion": "Información adicional sobre nuestros servicios",
+    "tab_1": "Envíos",
+    "contenido_tab_1": "Enviamos en un plazo de 2 a 5 días hábiles con opciones internacionales.",
+    "tab_2": "Devoluciones",
+    "contenido_tab_2": "Aceptamos devoluciones en un plazo de 30 días con condiciones específicas.",
+    "tab_3": "Soporte",
+    "contenido_tab_3": "Nuestro equipo de soporte está disponible 24/7 para ayudarte con cualquier consulta."
+  },
+  "contacto": {
+    "titulo": "Contacto | Tesoros Del Tiempo",
+    "encabezado": "Contacto",
+    "ubicacion": {
+      "titulo": "Ubicación"
+    },
+    "libreria": {
+      "titulo": "Nuestra Librería"
+    }
+  },
+  "libro": {
+    "autor_label": "Autor:",
+    "editorial_label": "Editorial:",
+    "año_label": "Año de edición:",
+    "materia_label": "Materia:",
+    "isbn_label": "ISBN:",
+    "paginas_label": "Páginas:",
+    "encuadernacion_label": "Encuadernación:",
+    "precio_label": "Precio:",
+    "sinopsis_label": "Sinopsis",
+    "añadir_cesta": "Añadir a mi cesta",
+    "libro_no_encontrado": "Libro no encontrado."
+  }
+}

@@ -12,32 +12,32 @@
 
   <!-- Banner Principal -->
   <section class="bg-[#f3f0e0] py-12 text-center">
-    <h2 class="text-3xl font-bold mb-2">Libros antiguos, raros, y curiosos</h2>
-    <p class="text-lg">Adéntrate en nuestra tienda para descubrir piezas únicas y de colección.</p>
+    <h2 data-i18n="banner.titulo" class="text-3xl font-bold mb-2">Libros antiguos, raros, y curiosos</h2>
+    <p data-i18n="banner.descripcion" class="text-lg">Adéntrate en nuestra tienda para descubrir piezas únicas y de colección.</p>
   </section>
 
   <!-- Ficha del Libro -->
   <main class="px-6 py-12">
-    <section class="max-w-5xl mx-auto bg-white shadow-md rounded-lg p-6 flex flex-col md:flex-row gap-8">
-      <img src="img/books/bookGrande.png" alt="Orgullo y prejuicio" class="w-full md:w-1/3 rounded object-cover">
+    <section class="max-w-5xl mx-auto bg-white shadow-md rounded-lg p-6 flex flex-col md:flex-row gap-8" id="book-section">
+      <img src="img/books/bookGrande.png" alt="Orgullo y prejuicio" class="w-full md:w-1/3 rounded object-cover" id="book-image">
       <div class="md:w-2/3 space-y-4">
-        <h1 class="text-2xl font-bold">Orgullo y prejuicio</h1>
-        <p><span class="font-semibold">Autor:</span> Jane Austen</p>
-        <p><span class="font-semibold">Editorial:</span> Norma</p>
-        <p><span class="font-semibold">Año de edición:</span> 2024</p>
-        <p><span class="font-semibold">Materia:</span> Historia</p>
-        <p><span class="font-semibold">ISBN:</span> 111-22-333-4444-1</p>
-        <p><span class="font-semibold">Páginas:</span> 400</p>
-        <p><span class="font-semibold">Encuadernación:</span> Pasta dura</p>
-        <p class="text-2xl font-bold text-green-700">52,30€</p>
-        <button id="add-to-cart-btn" class="bg-green-700 text-white px-6 py-2 rounded hover:bg-green-800 transition">Añadir a mi cesta</button>
+        <h1 class="text-2xl font-bold" id="book-title">Orgullo y prejuicio</h1>
+        <p data-i18n="libro.autor_label"><span class="font-semibold">Autor:</span> <span id="book-author">Jane Austen</span></p>
+        <p data-i18n="libro.editorial_label"><span class="font-semibold">Editorial:</span> <span id="book-publisher">Norma</span></p>
+        <p data-i18n="libro.año_label"><span class="font-semibold">Año de edición:</span> <span id="book-year">2024</span></p>
+        <p data-i18n="libro.materia_label"><span class="font-semibold">Materia:</span> <span id="book-subject">Historia</span></p>
+        <p data-i18n="libro.isbn_label"><span class="font-semibold">ISBN:</span> <span id="book-isbn">111-22-333-4444-1</span></p>
+        <p data-i18n="libro.paginas_label"><span class="font-semibold">Páginas:</span> <span id="book-pages">400</span></p>
+        <p data-i18n="libro.encuadernacion_label"><span class="font-semibold">Encuadernación:</span> <span id="book-binding">Pasta dura</span></p>
+        <p class="text-2xl font-bold text-green-700" id="book-price">52,30€</p>
+        <button id="add-to-cart-btn" class="bg-green-700 text-white px-6 py-2 rounded hover:bg-green-800 transition" data-i18n="libro.añadir_cesta">Añadir a mi cesta</button>
         <div>
-          <h3 class="text-lg font-semibold mt-6 mb-2">Sinopsis</h3>
-          <p class="text-sm text-gray-700">101 reflexiones que cambiarán tu forma de pensar..</p>
+          <h3 class="text-lg font-semibold mt-6 mb-2" data-i18n="libro.sinopsis_label">Sinopsis</h3>
+          <p class="text-sm text-gray-700" id="book-synopsis">101 reflexiones que cambiarán tu forma de pensar..</p>
         </div>
       </div>
     </section>
-  </main>
+  </main>  
 
   <div id="footer"></div>
   <script src="js/include-components.js"></script>

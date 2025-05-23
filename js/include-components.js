@@ -7,8 +7,9 @@ document.addEventListener("DOMContentLoaded", () => {
       el.innerHTML = html;
 
       if (selector === "#header") {
-        initMenuToggle();  // <-- aquí inicializamos el menú hamburguesa
+        initMenuToggle();  // Inicializa menú hamburguesa
         initDarkMode();
+        initLanguageSelector();  // <-- Aquí se llama a la función que definimos abajo
       }
     }
   };
@@ -19,7 +20,6 @@ document.addEventListener("DOMContentLoaded", () => {
   function initMenuToggle() {
     const menuToggle = document.getElementById('menu-toggle');
     const navMenu = document.getElementById('nav-menu');
-
     if (menuToggle && navMenu) {
       menuToggle.addEventListener('click', () => {
         navMenu.classList.toggle('hidden');
@@ -48,7 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     let darkModeSetting = localStorage.getItem('darkMode');
-
     if (darkModeSetting === null) {
       const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       applyDarkMode(systemPrefersDark);
@@ -62,5 +61,54 @@ document.addEventListener("DOMContentLoaded", () => {
       applyDarkMode(!enabled);
       localStorage.setItem('darkMode', !enabled ? 'enabled' : 'disabled');
     });
+  }
+
+  async function initLanguageSelector() {
+    const selector = document.getElementById('language-selector');
+
+    // Detectar si estamos en raíz o en carpeta components
+    // Esto es para ajustar la ruta relativa al archivo JSON de traducciones
+    const basePath = window.location.pathname.startsWith('/components/') ? '../' : '';
+
+    if (!selector && !document.querySelector('[data-i18n]')) {
+      // No hay selector ni elementos a traducir: salir
+      return;
+    }
+
+    const savedLang = localStorage.getItem('language') || 'es';
+    if (selector) selector.value = savedLang;
+
+    async function loadTranslations(lang) {
+      try {
+        const response = await fetch(`${basePath}locales/${lang}.json`);
+        if (!response.ok) throw new Error('No se pudo cargar el archivo de traducción');
+        const translations = await response.json();
+
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+          const keys = el.getAttribute('data-i18n').split('.');
+          let text = translations;
+          for (const key of keys) {
+            if (text[key] === undefined) {
+              text = null;
+              break;
+            }
+            text = text[key];
+          }
+          if (text) el.textContent = text;
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    await loadTranslations(savedLang);
+
+    if (selector) {
+      selector.addEventListener('change', async () => {
+        const selectedLang = selector.value;
+        localStorage.setItem('language', selectedLang);
+        await loadTranslations(selectedLang);
+      });
+    }
   }
 });

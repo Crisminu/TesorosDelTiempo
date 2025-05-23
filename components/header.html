@@ -11,14 +11,14 @@
   <!-- Menú oculto en móvil, visible en escritorio -->
   <nav id="nav-menu" class="hidden w-full md:flex md:items-center md:gap-4 md:w-auto">
     <ul class="flex flex-col md:flex-row md:space-x-4 text-sm md:text-base">
-      <li><a href="index.html" class="block px-3 py-2 hover:text-gray-300">Inicio</a></li>
-      <li><a href="busqueda.html" class="block px-3 py-2 hover:text-gray-300">Libros</a></li>
-      <li><a href="contacto.html" class="block px-3 py-2 hover:text-gray-300">Contacto</a></li>
+      <li><a href="index.html" data-i18n="header.inicio" class="block px-3 py-2 hover:text-gray-300">Inicio</a></li>
+      <li><a href="busqueda.html" data-i18n="header.libros" class="block px-3 py-2 hover:text-gray-300">Libros</a></li>
+      <li><a href="contacto.html" data-i18n="header.contacto" class="block px-3 py-2 hover:text-gray-300">Contacto</a></li>
     </ul>
 
-    <input type="text" placeholder="Buscar.." class="mt-3 md:mt-0 p-2 rounded bg-gray-100 text-black dark:bg-gray-700 dark:text-white text-sm md:ml-4">
+    <input type="text" data-i18n="header.buscar_placeholder" placeholder="Buscar.." class="mt-3 md:mt-0 p-2 rounded bg-gray-100 text-black dark:bg-gray-700 dark:text-white text-sm md:ml-4">
 
-    <select class="mt-3 md:mt-0 p-2 text-sm bg-[#1b1b1b] border border-white text-white rounded md:ml-4">
+    <select id="language-selector"class="mt-3 md:mt-0 p-2 text-sm bg-[#1b1b1b] border border-white text-white rounded md:ml-4">
       <option value="es">ES</option>
       <option value="en">EN</option>
     </select>

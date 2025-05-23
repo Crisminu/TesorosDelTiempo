@@ -1,0 +1,102 @@
+{
+  "header": {
+    "inicio": "Home",
+    "libros": "Books",
+    "contacto": "Contact",
+    "buscar_placeholder": "Search..",
+    "idioma": {
+      "es": "ES",
+      "en": "EN"
+    },
+    "carrito": "Cart",
+    "modo_oscuro": "Dark mode"
+  },
+  "hero": {
+    "titulo": "Discover unique books with history",
+    "descripcion": "Explore our collection of literary gems, collectibles, and ancient editions with priceless value.",
+    "ver_destacados": "See highlights"
+  },
+  "banner": {
+    "titulo": "Ancient, Rare, and Curious Books",
+    "descripcion": "Dive into our store to discover unique and collectible pieces."
+  },
+  "genero": "Genres",
+  "generos": {
+    "historia": "History",
+    "romance": "Romance",
+    "poesia": "Poetry",
+    "aventura": "Adventure",
+    "terror": "Horror"
+  },
+  "filtros": {
+    "filtrado_por": "Filtered by:",
+    "generos": "Genres:",
+    "idiomas": "Languages:"
+  },
+  "idiomas": "Languages",
+  "idiomas_lista": {
+    "espanol": "Spanish",
+    "ingles": "English",
+    "frances": "French",
+    "aleman": "German"
+  },
+  "busqueda": {
+    "placeholder": "History"
+  },
+  "info_1": "🌟 Meet our author of the month: Antonio de Nebrija, pioneer of Spanish grammar.",
+  "libros_destacados": "Featured Books",
+  "anadir": "Add",
+  "info_2": "📚 New ebook available! The lost manuscripts of the 15th century — Download it free this week.",
+  "autores_recomendados": "Recommended Authors",
+  "autores": {
+    "cervantes": {
+      "descripcion": "Author of Don Quijote. Key figure in world literature."
+    },
+    "becquer": {
+      "descripcion": "Sevillian poet of Romanticism. Known for his Rhymes and Legends."
+    },
+    "anamaria": {
+      "descripcion": "One of the most important voices of post-war Spain."
+    }
+  },
+  "acordeon": {
+    "titulo_1": "What is the history of our bookstore?",
+    "contenido_1": "Our bookstore was founded in 1998 with the mission to rescue and preserve rare and antique books.",
+    "titulo_2": "How do we select featured books?",
+    "contenido_2": "We select books based on historical relevance, rarity, and condition.",
+    "titulo_3": "Do you offer international shipping?",
+    "contenido_3": "Yes, we ship to most countries with tracking and insurance options."
+  },
+  "pestanas": {
+    "descripcion": "Additional information about our services",
+    "tab_1": "Shipping",
+    "contenido_tab_1": "We ship within 2 to 5 business days with international options.",
+    "tab_2": "Returns",
+    "contenido_tab_2": "Returns accepted within 30 days under specific conditions.",
+    "tab_3": "Support",
+    "contenido_tab_3": "Our support team is available 24/7 to assist you with any questions."
+  },
+  "contacto": {
+    "titulo": "Contact | Treasures of Time",
+    "encabezado": "Contact",
+    "ubicacion": {
+      "titulo": "Location"
+    },
+    "libreria": {
+      "titulo": "Our Bookstore"
+    }
+  },
+  "libro": {
+    "autor_label": "Author:",
+    "editorial_label": "Publisher:",
+    "año_label": "Edition Year:",
+    "materia_label": "Subject:",
+    "isbn_label": "ISBN:",
+    "paginas_label": "Pages:",
+    "encuadernacion_label": "Binding:",
+    "precio_label": "Price:",
+    "sinopsis_label": "Synopsis",
+    "añadir_cesta": "Add to my cart",
+    "libro_no_encontrado": "Book not found."
+  }
+}
