@@ -30,7 +30,7 @@
         <p><span class="font-semibold">Páginas:</span> 400</p>
         <p><span class="font-semibold">Encuadernación:</span> Pasta dura</p>
         <p class="text-2xl font-bold text-green-700">52,30€</p>
-        <button class="bg-green-700 text-white px-6 py-2 rounded hover:bg-green-800 transition">Añadir a mi cesta</button>
+        <button id="add-to-cart-btn" class="bg-green-700 text-white px-6 py-2 rounded hover:bg-green-800 transition">Añadir a mi cesta</button>
         <div>
           <h3 class="text-lg font-semibold mt-6 mb-2">Sinopsis</h3>
           <p class="text-sm text-gray-700">101 reflexiones que cambiarán tu forma de pensar..</p>
@@ -42,37 +42,60 @@
   <div id="footer"></div>
   <script src="js/include-components.js"></script>
   <script src="js/libros.js"></script>
-<script>
-  const params = new URLSearchParams(window.location.search);
-  const id = parseInt(params.get('id'));
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const id = parseInt(params.get('id'));
 
-  const libro = libros.find(l => l.id === id);
+    const libro = libros.find(l => l.id === id);
 
-  if (!libro) {
-    document.querySelector("main").innerHTML = "<p class='text-center text-red-600'>Libro no encontrado.</p>";
-  } else {
-    document.querySelector("main").innerHTML = `
-      <section class="max-w-5xl mx-auto bg-white shadow-md rounded-lg p-6 flex flex-col md:flex-row gap-8">
-        <img src="${libro.imagen}" alt="${libro.titulo}" class="w-full md:w-1/3 rounded object-cover">
-        <div class="md:w-2/3 space-y-4">
-          <h1 class="text-2xl font-bold">${libro.titulo}</h1>
-          <p><span class="font-semibold">Autor:</span> ${libro.autor}</p>
-          <p><span class="font-semibold">Editorial:</span> ${libro.editorial}</p>
-          <p><span class="font-semibold">Año de edición:</span> ${libro.año}</p>
-          <p><span class="font-semibold">Materia:</span> ${libro.materia}</p>
-          <p><span class="font-semibold">ISBN:</span> ${libro.isbn}</p>
-          <p><span class="font-semibold">Páginas:</span> ${libro.paginas}</p>
-          <p><span class="font-semibold">Encuadernación:</span> ${libro.encuadernacion}</p>
-          <p class="text-2xl font-bold text-green-700">${libro.precio.toFixed(2)}€</p>
-          <button class="bg-green-700 text-white px-6 py-2 rounded hover:bg-green-800 transition">Añadir a mi cesta</button>
-          <div>
-            <h3 class="text-lg font-semibold mt-6 mb-2">Sinopsis</h3>
-            <p class="text-sm text-gray-700">${libro.sinopsis}</p>
+    if (!libro) {
+      document.querySelector("main").innerHTML = "<p class='text-center text-red-600'>Libro no encontrado.</p>";
+    } else {
+      document.querySelector("main").innerHTML = `
+        <section class="max-w-5xl mx-auto bg-white shadow-md rounded-lg p-6 flex flex-col md:flex-row gap-8">
+          <img src="${libro.imagen}" alt="${libro.titulo}" class="w-full md:w-1/3 rounded object-cover">
+          <div class="md:w-2/3 space-y-4">
+            <h1 class="text-2xl font-bold">${libro.titulo}</h1>
+            <p><span class="font-semibold">Autor:</span> ${libro.autor}</p>
+            <p><span class="font-semibold">Editorial:</span> ${libro.editorial}</p>
+            <p><span class="font-semibold">Año de edición:</span> ${libro.año}</p>
+            <p><span class="font-semibold">Materia:</span> ${libro.materia}</p>
+            <p><span class="font-semibold">ISBN:</span> ${libro.isbn}</p>
+            <p><span class="font-semibold">Páginas:</span> ${libro.paginas}</p>
+            <p><span class="font-semibold">Encuadernación:</span> ${libro.encuadernacion}</p>
+            <p class="text-2xl font-bold text-green-700">${libro.precio.toFixed(2)}€</p>
+            <button id="add-to-cart-btn" class="bg-green-700 text-white px-6 py-2 rounded hover:bg-green-800 transition">Añadir a mi cesta</button>
+            <div>
+              <h3 class="text-lg font-semibold mt-6 mb-2">Sinopsis</h3>
+              <p class="text-sm text-gray-700">${libro.sinopsis}</p>
+            </div>
           </div>
-        </div>
-      </section>
-    `;
-  }
-</script>
+        </section>
+      `;
+
+      // Añadir funcionalidad al botón después de renderizar
+      const button = document.getElementById('add-to-cart-btn');
+      button.addEventListener('click', () => {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        const existingItem = cart.find(item => item.id === libro.id);
+        if (existingItem) {
+          existingItem.quantity += 1;
+        } else {
+          cart.push({
+            id: libro.id,
+            title: libro.titulo,
+            price: libro.precio,
+            quantity: 1
+          });
+        }
+
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        // Redirigir al carrito
+        window.location.href = 'carrito.html';
+      });
+    }
+  </script>
 </body>
 </html>

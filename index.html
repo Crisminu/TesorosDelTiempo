@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tesoros Del Tiempo</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <script>
@@ -27,6 +28,34 @@
     .animate-fadeIn {
       animation: fadeIn 0.8s forwards;
     }
+    .carousel-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 0.7s ease;
+      opacity: 0;
+      z-index: 0;
+    }
+    
+    .carousel-img.active {
+      opacity: 1;
+      z-index: 1;
+    }
+    
+    #hero-carousel {
+      position: relative;
+      overflow: hidden;
+      border-radius: 0.5rem;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      height: 300px;
+      width: 100%;
+    }
+    .rotate-180 {
+      transform: rotate(180deg);
+    }
+
   </style>  
 </head>
 <body class="bg-[#f8f4e3] text-[#333] font-sans transition-colors duration-300 dark:bg-[#1a1a1a] dark:text-gray-100">
@@ -44,13 +73,15 @@
     <section class="flex flex-col md:flex-row items-center justify-between px-6 py-12 bg-[#f3f0e0] dark:bg-[#2c2c2c]">
       <div class="md:w-1/2 mb-6 md:mb-0 relative">
         <!-- Contenedor del carrusel -->
-        <div id="hero-carousel" class="relative overflow-hidden rounded shadow-lg max-h-[300px] w-full" style="aspect-ratio: 4 / 3;">
-          <img src="img/hero.jpg" alt="Libros antiguos" 
-               class="w-full h-full object-cover absolute inset-0 transition-opacity duration-700 opacity-100" />
-               <img src="img/books/book1.jpg" alt="Libro destacado" 
-               class="w-full h-full object-cover absolute inset-0 transition-opacity duration-700 opacity-0" />
-          
-          <!-- Botones anterior y siguiente -->
+        <div class="relative overflow-hidden rounded-lg shadow-lg" style="height: 300px; width: 100%;">
+          <div id="hero-carousel" class="h-full w-full relative">
+            <!-- Imágenes del carrusel -->
+            <img src="img/hero.jpg" alt="Libros antiguos" class="carousel-img active">
+            <img src="img/books/book1.jpg" alt="Libro destacado 1" class="carousel-img">
+            <img src="img/books/book2.jpg" alt="Libro destacado 2" class="carousel-img">
+            <img src="img/books/book3.jpg" alt="Libro destacado 3" class="carousel-img">
+          </div>
+
           <button id="prevBtn" aria-label="Anterior" 
                   class="absolute top-1/2 left-2 transform -translate-y-1/2 bg-green-600 text-white p-2 rounded-full hover:bg-green-700 transition-opacity opacity-80 z-10">
             <i class="fas fa-chevron-left"></i>
@@ -59,7 +90,7 @@
                   class="absolute top-1/2 right-2 transform -translate-y-1/2 bg-green-600 text-white p-2 rounded-full hover:bg-green-700 transition-opacity opacity-80 z-10">
             <i class="fas fa-chevron-right"></i>
           </button>
-        </div>
+        </div>        
       </div>
       <div class="md:w-1/2 md:pl-12 text-center md:text-left">
         <h1 class="text-3xl md:text-5xl font-bold mb-4">Descubre libros únicos y con historia</h1>
@@ -78,78 +109,88 @@
       <h3 class="text-2xl font-bold text-center mb-6">Libros destacados</h3>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 justify-items-center">
     
-        <a href="libroInfo.html?id=1" class="block w-44 text-center bg-white dark:bg-gray-800 rounded shadow p-2 hover:scale-105 transition relative">
-          <img src="img/books/book1.jpg" alt="Don Quijote" class="h-64 w-full object-cover rounded mb-2" />
-          <h4 class="text-md font-semibold">Don Quijote de La Mancha</h4>
-          <p class="text-green-600 font-bold">€250.00 EUR</p>
+        <div class="block w-44 bg-white dark:bg-gray-800 rounded shadow p-2 hover:scale-105 transition relative text-center">
+          <a href="libroInfo.html?id=1" class="block">
+            <img src="img/books/book1.jpg" alt="Don Quijote" class="h-64 w-full object-cover rounded mb-2" />
+            <h4 class="text-md font-semibold">Don Quijote de La Mancha</h4>
+            <p class="text-green-600 font-bold">€250.00 EUR</p>
+          </a>
           <button
-            class="add-to-cart-btn absolute bottom-2 right-2 bg-green-600 text-white px-2 py-1 rounded text-sm hover:bg-green-700 transition"
+            class="add-to-cart-btn mt-2 w-full bg-green-600 text-white px-3 py-1 rounded text-sm hover:bg-green-700 transition"
             data-id="1"
             data-title="Don Quijote de La Mancha"
             data-price="250"
           >
             Añadir
           </button>
-        </a>
+        </div>
     
-        <a href="libroInfo.html?id=2" class="block w-44 text-center bg-white dark:bg-gray-800 rounded shadow p-2 hover:scale-105 transition relative">
-          <img src="img/books/book2.jpg" alt="Castilla y León" class="h-64 w-full object-cover rounded mb-2" />
-          <h4 class="text-md font-semibold">Castilla y León según la visión de los viajeros extranjeros</h4>
-          <p class="text-green-600 font-bold">€180.00 EUR</p>
+        <div class="block w-44 bg-white dark:bg-gray-800 rounded shadow p-2 hover:scale-105 transition relative text-center">
+          <a href="libroInfo.html?id=2" class="block">
+            <img src="img/books/book2.jpg" alt="Castilla y León" class="h-64 w-full object-cover rounded mb-2" />
+            <h4 class="text-md font-semibold">Castilla y León según la visión de los viajeros extranjeros</h4>
+            <p class="text-green-600 font-bold">€180.00 EUR</p>
+          </a>
           <button
-            class="add-to-cart-btn absolute bottom-2 right-2 bg-green-600 text-white px-2 py-1 rounded text-sm hover:bg-green-700 transition"
+            class="add-to-cart-btn mt-2 w-full bg-green-600 text-white px-3 py-1 rounded text-sm hover:bg-green-700 transition"
             data-id="2"
             data-title="Castilla y León según la visión de los viajeros extranjeros"
             data-price="180"
           >
             Añadir
           </button>
-        </a>
+        </div>
     
-        <a href="libroInfo.html?id=3" class="block w-44 text-center bg-white dark:bg-gray-800 rounded shadow p-2 hover:scale-105 transition relative">
-          <img src="img/books/book3.jpg" alt="Moby Dick" class="h-64 w-full object-cover rounded mb-2" />
-          <h4 class="text-md font-semibold">Moby Dick</h4>
-          <p class="text-green-600 font-bold">€250.00 EUR</p>
+        <div class="block w-44 bg-white dark:bg-gray-800 rounded shadow p-2 hover:scale-105 transition relative text-center">
+          <a href="libroInfo.html?id=3" class="block">
+            <img src="img/books/book3.jpg" alt="Moby Dick" class="h-64 w-full object-cover rounded mb-2" />
+            <h4 class="text-md font-semibold">Moby Dick</h4>
+            <p class="text-green-600 font-bold">€250.00 EUR</p>
+          </a>
           <button
-            class="add-to-cart-btn absolute bottom-2 right-2 bg-green-600 text-white px-2 py-1 rounded text-sm hover:bg-green-700 transition"
+            class="add-to-cart-btn mt-2 w-full bg-green-600 text-white px-3 py-1 rounded text-sm hover:bg-green-700 transition"
             data-id="3"
             data-title="Moby Dick"
             data-price="250"
           >
             Añadir
           </button>
-        </a>
+        </div>
     
-        <a href="libroInfo.html?id=4" class="block w-44 text-center bg-white dark:bg-gray-800 rounded shadow p-2 hover:scale-105 transition relative">
-          <img src="img/books/book4.jpg" alt="Drácula" class="h-64 w-full object-cover rounded mb-2" />
-          <h4 class="text-md font-semibold">Drácula</h4>
-          <p class="text-green-600 font-bold">€280.00 EUR</p>
+        <div class="block w-44 bg-white dark:bg-gray-800 rounded shadow p-2 hover:scale-105 transition relative text-center">
+          <a href="libroInfo.html?id=4" class="block">
+            <img src="img/books/book4.jpg" alt="Drácula" class="h-64 w-full object-cover rounded mb-2" />
+            <h4 class="text-md font-semibold">Drácula</h4>
+            <p class="text-green-600 font-bold">€280.00 EUR</p>
+          </a>
           <button
-            class="add-to-cart-btn absolute bottom-2 right-2 bg-green-600 text-white px-2 py-1 rounded text-sm hover:bg-green-700 transition"
+            class="add-to-cart-btn mt-2 w-full bg-green-600 text-white px-3 py-1 rounded text-sm hover:bg-green-700 transition"
             data-id="4"
             data-title="Drácula"
             data-price="280"
           >
             Añadir
           </button>
-        </a>
+        </div>
     
-        <a href="libroInfo.html?id=5" class="block w-44 text-center bg-white dark:bg-gray-800 rounded shadow p-2 hover:scale-105 transition relative">
-          <img src="img/books/book5.jpg" alt="Orgullo y Prejuicio" class="h-64 w-full object-cover rounded mb-2" />
-          <h4 class="text-md font-semibold">Orgullo y Prejuicio</h4>
-          <p class="text-green-600 font-bold">€80.00 EUR</p>
+        <div class="block w-44 bg-white dark:bg-gray-800 rounded shadow p-2 hover:scale-105 transition relative text-center">
+          <a href="libroInfo.html?id=5" class="block">
+            <img src="img/books/book5.jpg" alt="Orgullo y Prejuicio" class="h-64 w-full object-cover rounded mb-2" />
+            <h4 class="text-md font-semibold">Orgullo y Prejuicio</h4>
+            <p class="text-green-600 font-bold">€80.00 EUR</p>
+          </a>
           <button
-            class="add-to-cart-btn absolute bottom-2 right-2 bg-green-600 text-white px-2 py-1 rounded text-sm hover:bg-green-700 transition"
+            class="add-to-cart-btn mt-2 w-full bg-green-600 text-white px-3 py-1 rounded text-sm hover:bg-green-700 transition"
             data-id="5"
             data-title="Orgullo y Prejuicio"
             data-price="80"
           >
             Añadir
           </button>
-        </a>
+        </div>
     
       </div>
-    </section>    
+    </section>     
 
     <!-- Capa informativa 2 -->
     <section class="py-4 text-center bg-[#e5dfc6] dark:bg-[#1e1e1e]">
@@ -179,178 +220,6 @@
     </section>
   </main>
 
-  <!-- Sección Acordeón -->
-<!-- Sección Acordeón con contenido -->
-<section class="px-6 py-12 max-w-4xl mx-auto">
-  <h3 class="text-2xl font-bold text-center mb-6">Preguntas Frecuentes</h3>
-  <div class="accordion" id="faqAccordion">
-    <div class="accordion-item bg-white dark:bg-gray-800 rounded shadow mb-4">
-      <h2 class="accordion-header" id="headingOne">
-        <button
-          class="accordion-button collapsed text-gray-900 dark:text-gray-100"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#collapseOne"
-          aria-expanded="false"
-          aria-controls="collapseOne"
-        >
-          ¿Qué tipo de libros puedo encontrar aquí?
-        </button>
-      </h2>
-      <div
-        id="collapseOne"
-        class="accordion-collapse collapse"
-        aria-labelledby="headingOne"
-        data-bs-parent="#faqAccordion"
-      >
-        <div class="accordion-body text-gray-700 dark:text-gray-300">
-          Nuestra colección incluye libros antiguos, joyas literarias, clásicos de la literatura universal y novedades editoriales con gran valor histórico y cultural.
-        </div>
-      </div>
-    </div>
-
-    <div class="accordion-item bg-white dark:bg-gray-800 rounded shadow mb-4">
-      <h2 class="accordion-header" id="headingTwo">
-        <button
-          class="accordion-button collapsed text-gray-900 dark:text-gray-100"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#collapseTwo"
-          aria-expanded="false"
-          aria-controls="collapseTwo"
-        >
-          ¿Cómo puedo comprar un libro?
-        </button>
-      </h2>
-      <div
-        id="collapseTwo"
-        class="accordion-collapse collapse"
-        aria-labelledby="headingTwo"
-        data-bs-parent="#faqAccordion"
-      >
-        <div class="accordion-body text-gray-700 dark:text-gray-300">
-          Puedes seleccionar el libro que te interesa y seguir el enlace a la página de detalle, donde encontrarás opciones para comprar y realizar el pago seguro en línea.
-        </div>
-      </div>
-    </div>
-
-    <div class="accordion-item bg-white dark:bg-gray-800 rounded shadow mb-4">
-      <h2 class="accordion-header" id="headingThree">
-        <button
-          class="accordion-button collapsed text-gray-900 dark:text-gray-100"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#collapseThree"
-          aria-expanded="false"
-          aria-controls="collapseThree"
-        >
-          ¿Ofrecen envíos internacionales?
-        </button>
-      </h2>
-      <div
-        id="collapseThree"
-        class="accordion-collapse collapse"
-        aria-labelledby="headingThree"
-        data-bs-parent="#faqAccordion"
-      >
-        <div class="accordion-body text-gray-700 dark:text-gray-300">
-          Sí, realizamos envíos a varios países. Los costos y tiempos de envío varían según el destino. Consulta más detalles en la sección de envíos durante el proceso de compra.
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Sección Pestañas -->
-<section class="px-6 py-12">
-  <h3 class="text-2xl font-bold text-center mb-6">Explora por Pestañas</h3>
-  <ul
-    class="nav nav-tabs justify-center mb-4"
-    id="myTab"
-    role="tablist"
-  >
-    <li class="nav-item" role="presentation">
-      <button
-        class="nav-link active"
-        id="tab1-tab"
-        data-bs-toggle="tab"
-        data-bs-target="#tab1"
-        type="button"
-        role="tab"
-        aria-controls="tab1"
-        aria-selected="true"
-      >
-        Novedades
-      </button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button
-        class="nav-link"
-        id="tab2-tab"
-        data-bs-toggle="tab"
-        data-bs-target="#tab2"
-        type="button"
-        role="tab"
-        aria-controls="tab2"
-        aria-selected="false"
-      >
-        Clásicos
-      </button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button
-        class="nav-link"
-        id="tab3-tab"
-        data-bs-toggle="tab"
-        data-bs-target="#tab3"
-        type="button"
-        role="tab"
-        aria-controls="tab3"
-        aria-selected="false"
-      >
-        Recomendados
-      </button>
-    </li>
-  </ul>
-  <div class="tab-content" id="myTabContent">
-    <div
-      class="tab-pane fade show active"
-      id="tab1"
-      role="tabpanel"
-      aria-labelledby="tab1-tab"
-    >
-      <ul class="list-disc list-inside text-gray-700 dark:text-gray-300 max-w-md mx-auto">
-        <li><strong>Los manuscritos perdidos del siglo XV</strong> - Gratis esta semana</li>
-        <li><strong>La sombra del viento</strong> - €22.50 EUR</li>
-        <li><strong>El nombre del viento</strong> - €25.00 EUR</li>
-      </ul>
-    </div>
-    <div
-      class="tab-pane fade"
-      id="tab2"
-      role="tabpanel"
-      aria-labelledby="tab2-tab"
-    >
-      <ul class="list-disc list-inside text-gray-700 dark:text-gray-300 max-w-md mx-auto">
-        <li><strong>Don Quijote de La Mancha</strong> - €250.00 EUR</li>
-        <li><strong>Moby Dick</strong> - €250.00 EUR</li>
-        <li><strong>Orgullo y Prejuicio</strong> - €80.00 EUR</li>
-      </ul>
-    </div>
-    <div
-      class="tab-pane fade"
-      id="tab3"
-      role="tabpanel"
-      aria-labelledby="tab3-tab"
-    >
-      <ul class="list-disc list-inside text-gray-700 dark:text-gray-300 max-w-md mx-auto">
-        <li><strong>Castilla y León según la visión de los viajeros extranjeros</strong> - €180.00 EUR</li>
-        <li><strong>Drácula</strong> - €280.00 EUR</li>
-        <li><strong>Ana María Matute: Obras completas</strong> - €120.00 EUR</li>
-      </ul>
-    </div>
-  </div>
-</section>
 
   <button id="scrollToTopBtn" 
     class="hidden fixed bottom-6 right-6 p-3 bg-green-600 text-white rounded-full shadow-lg hover:bg-green-700 transition z-50"
@@ -358,7 +227,14 @@
     <i class="fas fa-arrow-up"></i>
   </button>
 
+  <div style="background-color: #f8f4e3; max-width: 800px; margin: 20px auto; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 10px;">
+    <iframe src="components/acordeon.html" style="width: 100%; height: 300px; border: none; background-color: #f8f4e3;"></iframe>
+  </div>
 
+  <div style="background-color: #f8f4e3; max-width: 800px; margin: 20px auto; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 10px;">
+    <iframe src="components/pestanas.html" style="width: 100%; height: 250px; border: none; background-color: #f8f4e3;"></iframe>
+  </div>
+  
   <div id="footer"></div>
   <script src="js/include-components.js"></script>
 
@@ -401,27 +277,56 @@
       scrollBtn.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
-
-    const images = document.querySelectorAll('#hero-carousel img');
-    let currentIndex = 0;
-
-    const showImage = index => {
-      images.forEach((img, i) => {
-        img.style.opacity = i === index ? '1' : '0';
+      document.addEventListener('DOMContentLoaded', function() {
+      const carousel = document.getElementById('hero-carousel');
+      const images = document.querySelectorAll('.carousel-img');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      let currentIndex = 0;
+      
+      // Inicializar - mostrar primera imagen
+      images[currentIndex].classList.add('active');
+      
+      function showImage(index) {
+        // Validar índice
+        if (index < 0) index = images.length - 1;
+        if (index >= images.length) index = 0;
+        
+        // Ocultar todas las imágenes
+        images.forEach(img => {
+          img.classList.remove('active');
+        });
+        
+        // Mostrar la imagen actual
+        images[index].classList.add('active');
+        currentIndex = index;
+      }
+      
+      // Event listeners para los botones
+      prevBtn.addEventListener('click', () => {
+        showImage(currentIndex - 1);
       });
-    };
-
-    document.getElementById('prevBtn').addEventListener('click', () => {
-      currentIndex = (currentIndex - 1 + images.length) % images.length;
-      showImage(currentIndex);
+      
+      nextBtn.addEventListener('click', () => {
+        showImage(currentIndex + 1);
+      });
+      
+      // Opcional: Carrusel automático
+      let interval = setInterval(() => {
+        showImage(currentIndex + 1);
+      }, 5000);
+      
+      // Pausar al pasar el ratón
+      carousel.addEventListener('mouseenter', () => {
+        clearInterval(interval);
+      });
+      
+      carousel.addEventListener('mouseleave', () => {
+        interval = setInterval(() => {
+          showImage(currentIndex + 1);
+        }, 5000);
+      });
     });
-
-    document.getElementById('nextBtn').addEventListener('click', () => {
-      currentIndex = (currentIndex + 1) % images.length;
-      showImage(currentIndex);
-    });
-
-    showImage(currentIndex);
 
     // Añadir a carrito
     document.querySelectorAll('.add-to-cart-btn').forEach(button => {

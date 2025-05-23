@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Acordeón FAQ</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    /* Fondo del body igual que el body principal */
+    body {
+      background-color: #f8f4e3;
+      color: #333;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      margin: 0 auto;
+    }
+    /* Para modo oscuro (si lo usas) */
+    .dark body {
+      background-color: #1a1a1a;
+      color: #eee;
+    }
+
+    .accordion-item {
+      background-color:#f8f4e3;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 8px rgb(0 0 0 / 0.1);
+      margin-bottom: 1rem;
+    }
+
+    .accordion-button {
+      border-radius: 0.5rem;
+    }
+
+    .accordion-button::after {
+      display: none;
+    }
+
+    /* Transición y rotación icono */
+    .accordion-button i.fas.fa-chevron-down {
+      transition: transform 0.3s ease;
+    }
+    .rotate-180 {
+      transform: rotate(180deg);
+    }
+  </style>
+</head>
+<body>
+<section class="px-1 pt-3 pb-0 max-w-4xl mx-auto">
+    <h3 class="text-2xl font-bold text-center mb-4">Preguntas Frecuentes</h3>
+    <div class="accordion" id="faqAccordion" role="tablist">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button
+            class="accordion-button collapsed d-flex justify-content-between align-items-center"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseOne"
+            aria-expanded="false"
+            aria-controls="collapseOne"
+          >
+            ¿Qué tipo de libros puedo encontrar aquí?
+            <i class="fas fa-chevron-down"></i>
+          </button>
+        </h2>
+        <div
+          id="collapseOne"
+          class="accordion-collapse collapse"
+          aria-labelledby="headingOne"
+          data-bs-parent="#faqAccordion"
+        >
+          <div class="accordion-body">
+            Nuestra colección incluye libros antiguos, joyas literarias, clásicos de la literatura universal y novedades editoriales con gran valor histórico y cultural.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingTwo">
+          <button
+            class="accordion-button collapsed d-flex justify-content-between align-items-center"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseTwo"
+            aria-expanded="false"
+            aria-controls="collapseTwo"
+          >
+            ¿Cómo puedo comprar un libro?
+            <i class="fas fa-chevron-down"></i>
+          </button>
+        </h2>
+        <div
+          id="collapseTwo"
+          class="accordion-collapse collapse"
+          aria-labelledby="headingTwo"
+          data-bs-parent="#faqAccordion"
+        >
+          <div class="accordion-body">
+            Puedes seleccionar el libro que te interesa y seguir el enlace a la página de detalle, donde encontrarás opciones para comprar y realizar el pago seguro en línea.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingThree">
+          <button
+            class="accordion-button collapsed d-flex justify-content-between align-items-center"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseThree"
+            aria-expanded="false"
+            aria-controls="collapseThree"
+          >
+            ¿Ofrecen envíos internacionales?
+            <i class="fas fa-chevron-down"></i>
+          </button>
+        </h2>
+        <div
+          id="collapseThree"
+          class="accordion-collapse collapse"
+          aria-labelledby="headingThree"
+          data-bs-parent="#faqAccordion"
+        >
+          <div class="accordion-body">
+            Sí, realizamos envíos a varios países. Los costos y tiempos de envío varían según el destino. Consulta más detalles en la sección de envíos durante el proceso de compra.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Rotar icono al abrir/cerrar acordeón
+    document.querySelectorAll(".accordion-button").forEach((button) => {
+      button.addEventListener("click", () => {
+        const icon = button.querySelector("i.fas.fa-chevron-down");
+        if (icon) {
+          icon.classList.toggle("rotate-180");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
