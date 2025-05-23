@@ -20,6 +20,13 @@
     .animate-fadeIn {
       animation: fadeIn 0.8s forwards;
     }
+    button.delete-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      font-size: 1.2rem;
+    }
   </style>
 </head>
 <body class="bg-[#f8f4e3] text-[#333] font-sans dark:bg-[#1a1a1a] dark:text-gray-100">
@@ -32,6 +39,18 @@
   </main>
 
   <div id="footer"></div>
+
+  <!-- Modal de Confirmación -->
+  <div id="confirm-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+    <div class="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-sm w-full shadow-lg">
+      <h2 class="text-xl font-semibold mb-4 text-gray-900 dark:text-gray-100">Confirmar eliminación</h2>
+      <p class="mb-6 text-gray-700 dark:text-gray-300">¿Seguro que quieres eliminar este artículo del carrito?</p>
+      <div class="flex justify-end gap-4">
+        <button id="cancel-btn" class="px-4 py-2 rounded bg-gray-300 dark:bg-gray-700 hover:bg-gray-400 dark:hover:bg-gray-600">Cancelar</button>
+        <button id="confirm-btn" class="px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700">Borrar</button>
+      </div>
+    </div>
+  </div>
 
   <script src="js/include-components.js"></script>
 
@@ -52,6 +71,7 @@
             <th class="px-4 py-2">Precio</th>
             <th class="px-4 py-2">Cantidad</th>
             <th class="px-4 py-2">Subtotal</th>
+            <th class="px-4 py-2">Acciones</th>
           </tr>
         </thead>
         <tbody></tbody>
@@ -60,7 +80,7 @@
       const tbody = table.querySelector('tbody');
       let total = 0;
 
-      cart.forEach(item => {
+      cart.forEach((item, index) => {
         const subtotal = item.price * item.quantity;
         total += subtotal;
 
@@ -70,6 +90,11 @@
           <td class="border-t px-4 py-2">€${item.price.toFixed(2)}</td>
           <td class="border-t px-4 py-2">${item.quantity}</td>
           <td class="border-t px-4 py-2">€${subtotal.toFixed(2)}</td>
+          <td class="border-t px-4 py-2 flex justify-center items-center">
+            <button class="delete-btn hover:text-red-600" data-index="${index}" aria-label="Borrar artículo">
+              <i class="fas fa-trash text-black dark:text-white"></i>
+            </button>
+          </td>
         `;
         tbody.appendChild(row);
       });
@@ -78,10 +103,41 @@
       totalRow.innerHTML = `
         <td class="font-bold px-4 py-2 border-t" colspan="3">Total</td>
         <td class="font-bold px-4 py-2 border-t">€${total.toFixed(2)}</td>
+        <td class="border-t"></td>
       `;
       tbody.appendChild(totalRow);
 
       container.appendChild(table);
+
+      // Modal y botones
+      const modal = document.getElementById('confirm-modal');
+      const cancelBtn = document.getElementById('cancel-btn');
+      const confirmBtn = document.getElementById('confirm-btn');
+
+      let itemToDeleteIndex = null;
+
+      // Abrir modal al hacer clic en borrar
+      tbody.querySelectorAll('.delete-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          itemToDeleteIndex = parseInt(btn.dataset.index);
+          modal.classList.remove('hidden');
+        });
+      });
+
+      // Cancelar
+      cancelBtn.addEventListener('click', () => {
+        itemToDeleteIndex = null;
+        modal.classList.add('hidden');
+      });
+
+      // Confirmar borrado
+      confirmBtn.addEventListener('click', () => {
+        if (itemToDeleteIndex !== null) {
+          cart.splice(itemToDeleteIndex, 1);
+          localStorage.setItem('cart', JSON.stringify(cart));
+          location.reload();
+        }
+      });
     }
   </script>
 </body>
